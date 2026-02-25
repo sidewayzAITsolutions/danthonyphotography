@@ -939,38 +939,53 @@ html.d {background-color:rgba(30,45,60,1);}
     (function () {
       document.title = "Derek Anthony Photography";
 
-      // Google Drive Image URLs
-      const googleDriveImages = {
-        '1RfEhzvSOFXUGYvub1YkVaFd7cDweiR0c': 'https://drive.google.com/uc?export=view&id=1RfEhzvSOFXUGYvub1YkVaFd7cDweiR0c',
-        '1uF_87i4UMk8Flg3jFYLEArSuKIQ0YBUD': 'https://drive.google.com/uc?export=view&id=1uF_87i4UMk8Flg3jFYLEArSuKIQ0YBUD',
-        '1GUhzO4rrTt62BFWOzhzdQCJ3-KXTDNfv': 'https://drive.google.com/uc?export=view&id=1GUhzO4rrTt62BFWOzhzdQCJ3-KXTDNfv',
-        '1XEWDL1nz-0EHNcs0UoYnhZLaauOHbKeE': 'https://drive.google.com/uc?export=view&id=1XEWDL1nz-0EHNcs0UoYnhZLaauOHbKeE',
-        '10c8DJbSkTeRexcwWRzEXSP3MydZsNswT': 'https://drive.google.com/uc?export=view&id=10c8DJbSkTeRexcwWRzEXSP3MydZsNswT',
-        '1ZmKFO2MM_QG11hEkP55fSEQqO-K4P_f4': 'https://drive.google.com/uc?export=view&id=1ZmKFO2MM_QG11hEkP55fSEQqO-K4P_f4'
-      };
+      // Google Drive Image URLs mapped by index
+      const googleDriveImages = [
+        'https://drive.google.com/uc?export=view&id=1RfEhzvSOFXUGYvub1YkVaFd7cDweiR0c',
+        'https://drive.google.com/uc?export=view&id=1uF_87i4UMk8Flg3jFYLEArSuKIQ0YBUD',
+        'https://drive.google.com/uc?export=view&id=1GUhzO4rrTt62BFWOzhzdQCJ3-KXTDNfv',
+        'https://drive.google.com/uc?export=view&id=1XEWDL1nz-0EHNcs0UoYnhZLaauOHbKeE',
+        'https://drive.google.com/uc?export=view&id=10c8DJbSkTeRexcwWRzEXSP3MydZsNswT',
+        'https://drive.google.com/uc?export=view&id=1ZmKFO2MM_QG11hEkP55fSEQqO-K4P_f4'
+      ];
 
-      // Replace gallery images with Google Drive URLs
-      document.addEventListener('DOMContentLoaded', function() {
-        const galleryImages = document.querySelectorAll('.sig-blog-feature-1_client-1_0 [data-img]');
-        galleryImages.forEach(img => {
-          const dataImg = img.getAttribute('data-img');
-          for (const [key, url] of Object.entries(googleDriveImages)) {
-            if (img.style.backgroundImage.includes(key)) {
-              img.style.backgroundImage = `url('${url}')`;
-            }
+      // Replace gallery images with Google Drive URLs after gallery loads
+      function replaceGalleryImages() {
+        // Target the gallery container
+        const gallery = document.querySelector('.sig-blog-feature-1_client-1_0');
+        if (!gallery) return;
+        
+        // Replace all img elements in the gallery
+        const images = gallery.querySelectorAll('img');
+        let imgIndex = 0;
+        images.forEach(img => {
+          if (imgIndex < googleDriveImages.length) {
+            img.src = googleDriveImages[imgIndex];
+            img.dataset.src = googleDriveImages[imgIndex];
+            imgIndex++;
           }
         });
         
-        // Also update noscript images
-        const noscriptImages = document.querySelectorAll('.sig-blog-feature-1_client-1_0 noscript img');
-        noscriptImages.forEach(img => {
-          for (const [key, url] of Object.entries(googleDriveImages)) {
-            if (img.src.includes(key)) {
-              img.src = url;
+        // Also try to replace any lazy-loaded images
+        const lazyImages = gallery.querySelectorAll('[data-src]');
+        imgIndex = 0;
+        lazyImages.forEach(img => {
+          if (imgIndex < googleDriveImages.length) {
+            img.dataset.src = googleDriveImages[imgIndex];
+            if (img.tagName === 'IMG') {
+              img.src = googleDriveImages[imgIndex];
             }
+            imgIndex++;
           }
         });
-      });
+      }
+
+      // Call when DOM is ready
+      document.addEventListener('DOMContentLoaded', replaceGalleryImages);
+      
+      // Also call after a delay to catch any late-loaded elements
+      setTimeout(replaceGalleryImages, 1000);
+      setTimeout(replaceGalleryImages, 2000);
 
       const setText = (selector, text, html = false) => {
         const node = document.querySelector(selector);
