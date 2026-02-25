@@ -90,6 +90,8 @@ html.d {background-color:rgba(30,45,60,1);}
 .sib-navigation .sie-navigation_6 svg {fill:rgba(212,175,55,1);}
 
 /* Hero Section with Dark Blue & Gold Flecks Background */
+.sib-blog-feature-1, 
+.sib-blog-feature-1 .sc {display:block !important;visibility:visible !important;width:100% !important;}
 .sib-blog-feature-1 .ss-bg {
   background: radial-gradient(circle at 20% 80%, rgba(212,175,55,0.15) 1px, transparent 1px),
               radial-gradient(circle at 60% 20%, rgba(212,175,55,0.2) 0.5px, transparent 0.5px),
@@ -106,6 +108,12 @@ html.d {background-color:rgba(30,45,60,1);}
   background-attachment: fixed;
   background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
 }
+
+/* Gallery widget styling */
+.sig-blog-feature-1_client-1_0,
+.sig-blog-feature-1_client-1_0 img,
+.sig-blog-feature-1_client-1_0 .si-bg {display:block !important;visibility:visible !important;width:100% !important;height:100% !important;}
+.sig-blog-feature-1_client-1_0 img {max-width:100%;object-fit:cover;}
 
 .d .st-d-title {color:rgba(212,175,55,1);line-height:0.9;letter-spacing:-0.03em;font-size:60px;text-align:left;font-family:'Garamond','Georgia',serif;font-weight:400;font-style:normal;}
 .d .st-d-title.se-rc a {color:rgba(0,0,0,1);}
@@ -986,6 +994,12 @@ html.d {background-color:rgba(30,45,60,1);}
       // Also call after a delay to catch any late-loaded elements
       setTimeout(replaceGalleryImages, 1000);
       setTimeout(replaceGalleryImages, 2000);
+
+/* Gallery widget styling */
+.sig-blog-feature-1_client-1_0,
+.sig-blog-feature-1_client-1_0 img,
+.sig-blog-feature-1_client-1_0 .si-bg {display:block !important;visibility:visible !important;width:100% !important;height:100% !important;}
+.sig-blog-feature-1_client-1_0 img {max-width:100%;object-fit:cover;}
 
       const setText = (selector, text, html = false) => {
         const node = document.querySelector(selector);
