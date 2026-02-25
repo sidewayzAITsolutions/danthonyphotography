@@ -947,17 +947,17 @@ html.d {background-color:rgba(30,45,60,1);}
     (function () {
       document.title = "Derek Anthony Photography";
 
-      // Google Drive Image URLs mapped by index
-      const googleDriveImages = [
-        'https://drive.google.com/uc?export=view&id=1RfEhzvSOFXUGYvub1YkVaFd7cDweiR0c',
-        'https://drive.google.com/uc?export=view&id=1uF_87i4UMk8Flg3jFYLEArSuKIQ0YBUD',
-        'https://drive.google.com/uc?export=view&id=1GUhzO4rrTt62BFWOzhzdQCJ3-KXTDNfv',
-        'https://drive.google.com/uc?export=view&id=1XEWDL1nz-0EHNcs0UoYnhZLaauOHbKeE',
-        'https://drive.google.com/uc?export=view&id=10c8DJbSkTeRexcwWRzEXSP3MydZsNswT',
-        'https://drive.google.com/uc?export=view&id=1ZmKFO2MM_QG11hEkP55fSEQqO-K4P_f4'
+      // Local Image URLs
+      const localImages = [
+        '/IMG_5871.JPG',
+        '/IMG_5872.JPG',
+        '/IMG_5874.JPG',
+        '/IMG_5875.JPG',
+        '/IMG_5876.JPG',
+        '/IMG_5878.JPG'
       ];
 
-      // Replace gallery images with Google Drive URLs after gallery loads
+      // Replace gallery images with local URLs
       function replaceGalleryImages() {
         // Target the gallery container
         const gallery = document.querySelector('.sig-blog-feature-1_client-1_0');
@@ -967,9 +967,9 @@ html.d {background-color:rgba(30,45,60,1);}
         const images = gallery.querySelectorAll('img');
         let imgIndex = 0;
         images.forEach(img => {
-          if (imgIndex < googleDriveImages.length) {
-            img.src = googleDriveImages[imgIndex];
-            img.dataset.src = googleDriveImages[imgIndex];
+          if (imgIndex < localImages.length) {
+            img.src = localImages[imgIndex];
+            img.dataset.src = localImages[imgIndex];
             imgIndex++;
           }
         });
@@ -978,10 +978,10 @@ html.d {background-color:rgba(30,45,60,1);}
         const lazyImages = gallery.querySelectorAll('[data-src]');
         imgIndex = 0;
         lazyImages.forEach(img => {
-          if (imgIndex < googleDriveImages.length) {
-            img.dataset.src = googleDriveImages[imgIndex];
+          if (imgIndex < localImages.length) {
+            img.dataset.src = localImages[imgIndex];
             if (img.tagName === 'IMG') {
-              img.src = googleDriveImages[imgIndex];
+              img.src = localImages[imgIndex];
             }
             imgIndex++;
           }
