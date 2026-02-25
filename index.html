@@ -56,6 +56,39 @@
     <style id="si-page-css">
       html.m {background-color:rgba(30,45,60,1);}
 html.d {background-color:rgba(30,45,60,1);}
+
+/* New Stylish Navigation */
+.sib-navigation {background-color:rgba(25,40,55,1) !important;}
+.sib-navigation .sc {display:flex;align-items:center;justify-content:center;height:80px !important;}
+.sib-navigation .sie-navigation_0 {display:none !important;}
+.sib-navigation .sie-navigation_1 {display:none !important;}
+.sib-navigation .sie-navigation_2 {display:none !important;}
+.sib-navigation .sie-navigation_3 {display:none !important;}
+.sib-navigation .sie-navigation_4 {display:none !important;}
+.sib-navigation .sie-navigation_6 {position:absolute;right:30px !important;top:50% !important;transform:translateY(-50%) !important;width:30px !important;height:30px !important;left:auto !important;}
+
+/* Derek Anthony Center Brand */
+.sib-navigation::after {content:'Derek Anthony';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Garamond','Georgia',serif;font-size:32px;font-weight:400;letter-spacing:2px;color:rgba(212,175,55,1);text-transform:uppercase;z-index:10;}
+
+/* Hide all nav menu items */
+.sib-navigation .sie-navigation_menu-close_0,
+.sib-navigation .sie-navigation_menu-close_7,
+.sib-navigation .sie-navigation_menu-close_8,
+.sib-navigation .sie-navigation_menu-close_9,
+.sib-navigation .sie-navigation_menu-close_10,
+.sib-navigation .sie-navigation_menu-close_11,
+.sib-navigation .sie-navigation_menu-close_12,
+.sib-navigation .sie-navigation_menu-open_0,
+.sib-navigation .sie-navigation_menu-open_7,
+.sib-navigation .sie-navigation_menu-open_8,
+.sib-navigation .sie-navigation_menu-open_9,
+.sib-navigation .sie-navigation_menu-open_10,
+.sib-navigation .sie-navigation_menu-open_11,
+.sib-navigation .sie-navigation_menu-open_12 {display:none !important;}
+
+/* Style hamburger menu */
+.sib-navigation .sie-navigation_6 svg {fill:rgba(212,175,55,1);}
+
 .d .st-d-title {color:rgba(212,175,55,1);line-height:0.9;letter-spacing:-0.03em;font-size:60px;text-align:left;font-family:'Garamond','Georgia',serif;font-weight:400;font-style:normal;}
 .d .st-d-title.se-rc a {color:rgba(0,0,0,1);}
 .d .st-d-title.se-rc a:hover {text-decoration:underline;color:rgba(212,175,55,1);opacity:0.8;}
@@ -81,12 +114,34 @@ html.d {background-color:rgba(30,45,60,1);}
 .m .st-m-paragraph.se-rc a {color:rgba(0,0,0,1);}
 .m .st-m-paragraph.se-rc a:hover {text-decoration:underline;color:rgba(212,175,55,1);opacity:0.8;}
 .sib-navigation {z-index:200;}
-.m .sib-navigation {height:56px;}
-.d .sib-navigation {height:176px;}
+.m .sib-navigation {height:80px;position:relative;}
+.d .sib-navigation {height:80px;position:relative;}
 .m .sib-navigation .ss-bg {background-color:rgba(25,40,55,1);}
 .d .sib-navigation .ss-bg {background-color:rgba(25,40,55,1);}
-.d .sie-navigation_0 {left:0px;top:0px;width:1200px;height:36px;}
-.m .sie-navigation_0 {left:48px;top:9px;width:224px;height:42.699999999999996px;display:none;}
+.d .sie-navigation_0 {display:none !important;}
+.m .sie-navigation_0 {display:none !important;}
+.d .sie-navigation_0 {display:none !important;}
+.m .sie-navigation_0 {display:none !important;}
+.d .sie-navigation_1 {display:none !important;}
+.m .sie-navigation_1 {display:none !important;}
+.d .sie-navigation_2 {display:none !important;}
+.m .sie-navigation_2 {display:none !important;}
+.d .sie-navigation_3 {display:none !important;}
+.m .sie-navigation_3 {display:none !important;}
+.d .sie-navigation_4 {display:none !important;}
+.m .sie-navigation_4 {display:none !important;}
+.d .sie-navigation_menu-close_1,
+.d .sie-navigation_menu-close_2,
+.d .sie-navigation_menu-close_3,
+.d .sie-navigation_menu-close_4,
+.d .sie-navigation_menu-close_5,
+.d .sie-navigation_menu-close_6,
+.m .sie-navigation_menu-close_1,
+.m .sie-navigation_menu-close_2,
+.m .sie-navigation_menu-close_3,
+.m .sie-navigation_menu-close_4,
+.m .sie-navigation_menu-close_5,
+.m .sie-navigation_menu-close_6 {display:none !important;}
 .d .sie-navigation_0 .se-simple:hover {}
 .m .sie-navigation_0 .se-simple:hover {}
 .d .sie-navigation_0 .se-simple {background-color:rgba(197,144,81,1);}
