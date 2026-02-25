@@ -947,52 +947,85 @@ html.d {background-color:rgba(30,45,60,1);}
     (function () {
       document.title = "Derek Anthony Photography";
 
-      // Local Image URLs
+      // Local Image URLs with absolute paths
       const localImages = [
-        './IMG_5871.JPG',
-        './IMG_5872.JPG',
-        './IMG_5874.JPG',
-        './IMG_5875.JPG',
-        './IMG_5876.JPG',
-        './IMG_5878.JPG'
+        '/IMG_5871.JPG',
+        '/IMG_5872.JPG',
+        '/IMG_5874.JPG',
+        '/IMG_5875.JPG',
+        '/IMG_5876.JPG',
+        '/IMG_5878.JPG'
       ];
 
-      // Robust gallery image replacement
+      // Aggressive gallery image replacement
       function replaceGalleryImages() {
-        // Find all img tags in the blog-feature gallery
-        const galleryContainer = document.querySelector('.sig-blog-feature-1_client-1_0');
-        if (galleryContainer) {
-          const images = galleryContainer.querySelectorAll('img');
-          images.forEach((img, idx) => {
-            if (idx < localImages.length) {
-              img.src = localImages[idx];
-              img.setAttribute('data-src', localImages[idx]);
-            }
-          });
-        }
-        
-        // Replace div background images in the gallery
-        const bgImages = document.querySelectorAll('.sig-blog-feature-1_client-1_0 [style*="background-image"]');
-        bgImages.forEach((el, idx) => {
+        // Method 1: Replace img src attributes
+        document.querySelectorAll('.sig-blog-feature-1_client-1_0 img').forEach((img, idx) => {
           if (idx < localImages.length) {
-            el.style.backgroundImage = `url(${localImages[idx]})`;
+            img.src = localImages[idx];
+            img.setAttribute('src', localImages[idx]);
+            img.removeAttribute('srcset');
           }
         });
+        
+        // Method 2: Replace background-image URLs in divs
+        document.querySelectorAll('.sig-blog-feature-1_client-1_0 [style*="background"]').forEach((el, idx) => {
+          if (idx < localImages.length) {
+            el.style.backgroundImage = `url('${localImages[idx]}')`;
+          }
+        });
+        
+        // Method 3: Use MutationObserver to catch dynamically added images
+        const gallery = document.querySelector('.sig-blog-feature-1_client-1_0');
+        if (gallery && !gallery._imageObserving) {
+          gallery._imageObserving = true;
+          const observer = new MutationObserver(() => {
+            gallery.querySelectorAll('img').forEach((img, idx) => {
+              if (!img._replaced && idx < localImages.length) {
+                img.src = localImages[idx];
+                img._replaced = true;
+              }
+            });
+          });
+          observer.observe(gallery, { childList: true, subtree: true });
+        }
       }
 
-      // Run immediately and after delays
+      // Run immediately and at intervals
       replaceGalleryImages();
-      setTimeout(replaceGalleryImages, 100);
+      setTimeout(replaceGalleryImages, 50);
+      setTimeout(replaceGalleryImages, 200);
       setTimeout(replaceGalleryImages, 500);
-      setTimeout(replaceGalleryImages, 1500);
+      setTimeout(replaceGalleryImages, 1000);
       document.addEventListener('DOMContentLoaded', replaceGalleryImages);
       window.addEventListener('load', replaceGalleryImages);
 
-/* Gallery widget styling */
+/* Gallery widget styling - CRITICAL VISIBILITY */
+.sib-blog-feature-1,
 .sig-blog-feature-1_client-1_0,
 .sig-blog-feature-1_client-1_0 img,
-.sig-blog-feature-1_client-1_0 .si-bg {display:block !important;visibility:visible !important;width:100% !important;height:100% !important;}
-.sig-blog-feature-1_client-1_0 img {max-width:100%;object-fit:cover;}
+.sig-blog-feature-1_client-1_0 [style*="background"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.sig-blog-feature-1_client-1_0 {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.sig-blog-feature-1_client-1_0 img {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+.sig-blog-feature-1_client-1_0 [style*="background"] {
+  width: 100% !important;
+  height: 100% !important;
+}
 
       const setText = (selector, text, html = false) => {
         const node = document.querySelector(selector);
