@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Derek Anthony Photography</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Garamond', 'Georgia', serif;
+        background-color: rgba(10, 25, 45, 1);
+        color: rgba(212, 175, 55, 1);
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: rgba(25, 40, 55, 1);
+        padding: 20px 40px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        color: rgba(212, 175, 55, 1);
+        text-transform: lowercase;
+      }
+
+      .hero {
+        width: 100%;
+        min-height: 600px;
+        background: 
+          radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 1px, transparent 1px),
+          radial-gradient(circle at 60% 20%, rgba(212, 175, 55, 0.2) 0.5px, transparent 0.5px),
+          radial-gradient(circle at 80% 60%, rgba(212, 175, 55, 0.12) 1.5px, transparent 1.5px),
+          radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.18) 0.8px, transparent 0.8px),
+          radial-gradient(circle at 10% 30%, rgba(212, 175, 55, 0.14) 1px, transparent 1px),
+          radial-gradient(circle at 90% 10%, rgba(212, 175, 55, 0.16) 1.2px, transparent 1.2px),
+          radial-gradient(circle at 30% 90%, rgba(212, 175, 55, 0.13) 0.9px, transparent 0.9px),
+          radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.17) 1.1px, transparent 1.1px);
+        background-size: 200% 200%, 250% 250%, 180% 180%, 220% 220%, 260% 260%, 190% 190%, 230% 230%, 210% 210%;
+        background-color: rgba(10, 25, 45, 1);
+        padding: 60px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .hero-gallery {
+        width: 100%;
+        max-width: 1000px;
+        height: 500px;
+        position: relative;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .gallery-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+      }
+
+      .gallery-image.active {
+        opacity: 1;
+      }
+
+      .gallery-controls {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(212, 175, 55, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: rgba(212, 175, 55, 1);
+        transform: scale(1.3);
+      }
+
+      .cta-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      h2 {
+        font-size: 48px;
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 40px;
+        background-color: rgba(38, 84, 164, 1);
+        color: rgba(255, 255, 255, 1);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .cta-button:hover {
+        background-color: rgba(212, 175, 55, 1);
+        color: rgba(10, 25, 45, 1);
+        transform: translateY(-2px);
+      }
+
+      section {
+        padding: 80px 40px;
+        text-align: center;
+      }
+
+      .services-section {
+        background-color: rgba(243, 236, 229, 1);
+        color: rgba(10, 25, 45, 1);
+      }
+
+      .services-section h2 {
+        color: rgba(38, 84, 164, 1);
+      }
+
+      .service-box {
+        background-color: rgba(255, 255, 255, 1);
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 400px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+      }
+
+      .service-box h3 {
+        color: rgba(212, 175, 55, 1);
+        font-size: 22px;
+        margin-bottom: 15px;
+        font-weight: 400;
+      }
+
+      .service-box p {
+        color: rgba(10, 25, 45, 1);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      footer {
+        background-color: rgba(243, 236, 229, 1);
+        color: rgba(10, 25, 45, 1);
+        padding: 60px 40px;
+        text-align: center;
+      }
+
+      footer p {
+        font-size: 13px;
+        margin-bottom: 15px;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .social-links a {
+        color: rgba(38, 84, 164, 1);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: rgba(212, 175, 55, 1);
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 15px 20px;
+          height: 60px;
+        }
+
+        .logo {
+          font-size: 20px;
+          letter-spacing: 1.5px;
+        }
+
+        .hero {
+          min-height: 400px;
+          padding: 40px 20px;
+        }
+
+        .hero-gallery {
+          height: 300px;
+          margin-bottom: 30px;
+        }
+
+        h2 {
+          font-size: 32px;
+        }
+
+        section {
+          padding: 40px 20px;
+        }
+
+        footer {
+          padding: 40px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">derekanthony.com</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-gallery">
+        <img src="https://danthonyphotography.com/IMG_5871.JPG" class="gallery-image active" alt="Derek Anthony Photography" />
+        <img src="https://danthonyphotography.com/IMG_5872.JPG" class="gallery-image" alt="Derek Anthony Photography" />
+        <img src="https://danthonyphotography.com/IMG_5873.JPG" class="gallery-image" alt="Derek Anthony Photography" />
+        <img src="https://danthonyphotography.com/IMG_5874.JPG" class="gallery-image" alt="Derek Anthony Photography" />
+        <img src="https://danthonyphotography.com/IMG_5875.JPG" class="gallery-image" alt="Derek Anthony Photography" />
+        <img src="https://danthonyphotography.com/IMG_5876.JPG" class="gallery-image" alt="Derek Anthony Photography" />
+      </div>
+
+      <div class="gallery-controls">
+        <div class="dot active" onclick="currentSlide(0)"></div>
+        <div class="dot" onclick="currentSlide(1)"></div>
+        <div class="dot" onclick="currentSlide(2)"></div>
+        <div class="dot" onclick="currentSlide(3)"></div>
+        <div class="dot" onclick="currentSlide(4)"></div>
+        <div class="dot" onclick="currentSlide(5)"></div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Professional Photography</h2>
+        <a href="#contact" class="cta-button">Book Your Session</a>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <h2>Our Services</h2>
+      
+      <div class="service-box">
+        <h3>Portrait Sessions</h3>
+        <p>Professional portraits that capture your essence. Studio or on-location shoots available.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>Wedding Photography</h3>
+        <p>Documenting your special day with artistry and attention to detail.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>Family Photography</h3>
+        <p>Creating lasting memories with your loved ones. Timeless images for generations.</p>
+      </div>
+
+      <div class="service-box">
+        <h3>Commercial Branding</h3>
+        <p>Professional imagery for your business needs and brand identity.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <p>Ready to capture your moment? Contact us to schedule your session.</p>
+      <p style="margin-top: 20px; font-size: 16px;">
+        <strong>Email:</strong> info@danthonyphotography.com<br>
+        <strong>Phone:</strong> (225) XXX-XXXX
+      </p>
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://www.pinterest.com" target="_blank">Pinterest</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Derek Anthony Photography. All rights reserved.</p>
+      <p>Professional Photography Studio & Services</p>
+    </footer>
+
+    <script>
+      let currentIndex = 0;
+      const totalImages = 6;
+
+      function showImage(index) {
+        const images = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.dot');
+
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        images[index].classList.add('active');
+        dots[index].classList.add('active');
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        showImage(currentIndex);
+      }
+
+      function currentSlide(index) {
+        currentIndex = index;
+        showImage(currentIndex);
+      }
+
+      // Auto-rotate every 5 seconds
+      setInterval(nextSlide, 5000);
+
+      // Initialize
+      showImage(0);
+    </script>
+  </body>
+</html>
