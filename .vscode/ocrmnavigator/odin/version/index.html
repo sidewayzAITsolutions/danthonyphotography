@@ -947,14 +947,14 @@ html.d {background-color:rgba(30,45,60,1);}
     (function () {
       document.title = "Derek Anthony Photography";
 
-      // Local Image URLs
+      // Local Image URLs - use full absolute URLs to bypass CDN prepending
       const localImages = [
-        '/IMG_5871.JPG',
-        '/IMG_5872.JPG',
-        '/IMG_5874.JPG',
-        '/IMG_5875.JPG',
-        '/IMG_5876.JPG',
-        '/IMG_5878.JPG'
+        'https://danthonyphotography.com/IMG_5871.JPG',
+        'https://danthonyphotography.com/IMG_5872.JPG',
+        'https://danthonyphotography.com/IMG_5874.JPG',
+        'https://danthonyphotography.com/IMG_5875.JPG',
+        'https://danthonyphotography.com/IMG_5876.JPG',
+        'https://danthonyphotography.com/IMG_5878.JPG'
       ];
 
       // Override the gallery before Showit loads
@@ -1005,33 +1005,6 @@ html.d {background-color:rgba(30,45,60,1);}
       document.addEventListener('DOMContentLoaded', replaceAllGalleryImages);
       window.addEventListener('load', replaceAllGalleryImages);
       setInterval(replaceAllGalleryImages, 2000);
-
-/* Gallery widget styling - CRITICAL VISIBILITY */
-.sib-blog-feature-1,
-.sig-blog-feature-1_client-1_0,
-.sig-blog-feature-1_client-1_0 img,
-.sig-blog-feature-1_client-1_0 [style*="background"] {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.sig-blog-feature-1_client-1_0 {
-  width: 100% !important;
-  height: 100% !important;
-  position: relative !important;
-}
-
-.sig-blog-feature-1_client-1_0 img {
-  max-width: 100% !important;
-  height: auto !important;
-  object-fit: cover !important;
-}
-
-.sig-blog-feature-1_client-1_0 [style*="background"] {
-  width: 100% !important;
-  height: 100% !important;
-}
 
       const setText = (selector, text, html = false) => {
         const node = document.querySelector(selector);
@@ -1103,5 +1076,33 @@ html.d {background-color:rgba(30,45,60,1);}
       setTimeout(normalizeVisibleCopy, 500);
     })();
   </script>
+  <style>
+    /* Gallery widget styling - CRITICAL VISIBILITY */
+    .sib-blog-feature-1,
+    .sig-blog-feature-1_client-1_0,
+    .sig-blog-feature-1_client-1_0 img,
+    .sig-blog-feature-1_client-1_0 [style*="background"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .sig-blog-feature-1_client-1_0 {
+      width: 100% !important;
+      height: 100% !important;
+      position: relative !important;
+    }
+
+    .sig-blog-feature-1_client-1_0 img {
+      max-width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+    }
+
+    .sig-blog-feature-1_client-1_0 [style*="background"] {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
   <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d35ece53c187790',t:'MTc3MjAwOTExNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
